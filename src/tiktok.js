@@ -92,7 +92,7 @@ async function refreshTokens(tokens) {
 export async function getAccessToken() {
   let tokens = await readStoredTokens();
   if (!tokens?.access_token) {
-    throw new Error("TikTok is not connected yet. Open /oauth/start in this server first.");
+    throw new Error("TikTok is not connected yet. Open /oauth/start, then save the shown token values in Render Environment.");
   }
 
   const now = Math.floor(Date.now() / 1000);

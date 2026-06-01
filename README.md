@@ -48,6 +48,14 @@ This is a small personal MCP server that lets a custom GPT read TikTok profile d
    data/tiktok_tokens.json
    ```
 
+   On hosted Render services, copy the token values shown after OAuth into Render Environment as:
+
+   ```text
+   TIKTOK_ACCESS_TOKEN
+   TIKTOK_REFRESH_TOKEN
+   TIKTOK_ACCESS_TOKEN_EXPIRES_AT
+   ```
+
 ## Connect to ChatGPT
 
 ChatGPT needs a public HTTPS URL for a remote MCP server. Localhost will not work from ChatGPT.

@@ -115,8 +115,30 @@ app.get("/oauth/callback", async (req, res) => {
   OAUTH_STATES.delete(String(state));
 
   try {
-    await exchangeCodeForTokens(String(code));
-    res.send("TikTok connected. You can close this tab and connect /mcp in ChatGPT.");
+    const tokens = await exchangeCodeForTokens(String(code));
+    const expiresAt = tokens.expires_at || "";
+
+    res.type("html").send(`<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TikTok connected</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 840px; margin: 48px auto; padding: 0 20px; line-height: 1.45; }
+      pre { white-space: pre-wrap; background: #f4f4f5; border: 1px solid #ddd; padding: 16px; border-radius: 8px; }
+      .warn { color: #9f1239; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <h1>TikTok connected</h1>
+    <p>Copy these values into Render → tiktok-mcp-server → Environment. Do not share them in chat.</p>
+    <p class="warn">These are private account tokens.</p>
+    <pre>TIKTOK_ACCESS_TOKEN=${tokens.access_token || ""}
+TIKTOK_REFRESH_TOKEN=${tokens.refresh_token || ""}
+TIKTOK_ACCESS_TOKEN_EXPIRES_AT=${expiresAt}</pre>
+    <p>After saving them in Render, restart/redeploy the service and connect <code>/mcp</code> in ChatGPT.</p>
+  </body>
+</html>`);
   } catch (exchangeError) {
     res.status(500).send(exchangeError.message);
   }
