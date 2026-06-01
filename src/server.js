@@ -89,7 +89,7 @@ app.get("/oauth/start", (req, res) => {
   const state = crypto.randomBytes(24).toString("hex");
   OAUTH_STATES.add(state);
 
-  const scopes = process.env.TIKTOK_SCOPES || "user.info.basic,user.info.profile,user.info.stats,video.list";
+  const scopes = process.env.TIKTOK_SCOPES || "user.info.basic";
   const url = new URL("https://www.tiktok.com/v2/auth/authorize/");
   url.searchParams.set("client_key", clientKey);
   url.searchParams.set("scope", scopes);

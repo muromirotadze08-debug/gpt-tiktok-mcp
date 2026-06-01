@@ -130,7 +130,7 @@ async function tiktokFetch(endpoint, { method = "GET", query, body } = {}) {
 
 export async function getProfile() {
   const fields = process.env.TIKTOK_USER_FIELDS ||
-    "open_id,union_id,avatar_url,display_name,bio_description,profile_deep_link,is_verified,follower_count,following_count,likes_count,video_count";
+    "open_id,union_id,avatar_url,display_name";
 
   return tiktokFetch("/v2/user/info/", {
     query: { fields },
@@ -150,4 +150,3 @@ export async function listVideos({ cursor = 0, max_count = 10 } = {}) {
     },
   });
 }
-

@@ -9,7 +9,7 @@ services:
       - key: HOST
         value: 0.0.0.0
       - key: TIKTOK_SCOPES
-        value: user.info.basic,user.info.profile,user.info.stats,video.list
+        value: user.info.basic
       - key: TIKTOK_CLIENT_KEY
         sync: false
       - key: TIKTOK_CLIENT_SECRET
