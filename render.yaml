@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tiktok-mcp-server
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: TIKTOK_SCOPES
+        value: user.info.basic,user.info.profile,user.info.stats,video.list
+      - key: TIKTOK_CLIENT_KEY
+        sync: false
+      - key: TIKTOK_CLIENT_SECRET
+        sync: false
+      - key: TIKTOK_REDIRECT_URI
+        sync: false
+
