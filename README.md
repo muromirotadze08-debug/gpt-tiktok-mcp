@@ -72,4 +72,3 @@ Use the public `/mcp` URL.
 - Do not commit `.env` or `data/tiktok_tokens.json`.
 - The TikTok app must have the scopes listed in `TIKTOK_SCOPES`.
 - If TikTok rejects a scope, remove it from `.env` or request access for that scope in TikTok Developers.
-
